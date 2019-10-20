@@ -119,17 +119,18 @@ function changeState(board) {
 
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board.length; j++) {
-
-            if (checkNeighbour(i, j, board) == 1) {
+            if (board[i][j] == 1) {
                 newBoard[i][j] = 2
-            } else if (checkNeighbour(i, j, board) == 2) {
+            } else if (board[i][j] == 2) {
                 newBoard[i][j] = 3
-            } else if (checkNeighbour(i, j, board) == 3) {
-                newBoard[i][j] = 1
+            } else if (board[i][j] == 3) {
+                if (checkNeighbour(i, j, board) == 1) {
+                    newBoard[i][j] = 1
+                } else {
+                    newBoard[i][j] = 3
+                }
             } else if (checkNeighbour(i, j, board) == 0) {
                 newBoard[i][j] = 0
-            } else if (checkNeighbour(i, j, board) == 7) {
-                newBoard[i][j] = 9
             }
         }
     }
@@ -172,16 +173,7 @@ function repeatTimeOut() {
 
 repeatTimeOut()
 
-// let board = createBoard(size)
 
-
-// function repeatTimeOut() {
-//     setTimeout(() => {
-//         displayBoard(board)
-//         board = nextBoard(board)
-//         repeatTimeOut()
-//     }, refreshInteral)
-// }
 
 
 
